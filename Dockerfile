@@ -1,6 +1,5 @@
 FROM ubuntu:16.04
 
-# set version label
 ARG SVN="http://www.streamboard.tv/svn/oscam/trunk"
 ARG REVISION="HEAD"
 ARG SOURCE_PATH="/usr/src/oscam-svn"
