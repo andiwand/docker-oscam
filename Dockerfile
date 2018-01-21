@@ -29,7 +29,7 @@ RUN rm -rf "${SOURCE_PATH}"
 
 RUN apt-get remove -y \
         build-essential \
-        subversion      \
+        subversion \
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf "/var/lib/apt/lists/*"
