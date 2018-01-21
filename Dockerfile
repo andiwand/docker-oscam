@@ -21,7 +21,7 @@ RUN cd "${SOURCE_PATH}" \
     && ./config.sh \
         --enable ${CONFIG_ENABLE} \
         --disable ${CONFIG_DISABLE} \
-    && CPU_CORES="$( grep -c processor /proc/cpuinfo )" || CPU_CORES="1" \
+    && CPU_CORES="$/(grep -c processor /proc/cpuinfo)" || CPU_CORES="4" \
     && make -j "${CPU_CORES}" \
         CONF_DIR="${CONFIG_PATH}" \
         OSCAM_BIN="${BINARY_PATH}"
