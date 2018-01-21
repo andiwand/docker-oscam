@@ -1,0 +1,21 @@
+# run for testing
+docker run --rm -ti \
+    --user 1000:1000 \
+    --group-add=dialout \
+    -p 15050:15050 \
+    -p 9000:9000 \
+    -v ...:/config \
+    --device /dev/ttyUSB \
+    andiwand/oscam
+
+# run as daemon
+docker run -dti \
+    --name=oscam \
+    --restart unless-stopped \
+    --user 1000:1000 \
+    --group-add=dialout \
+    -p 15050:15050 \
+    -p 9000:9000 \
+    -v ...:/config \
+    --device /dev/ttyUSB \
+    andiwand/oscam
