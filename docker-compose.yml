@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  gatekeeper.node:
+    build: .
+    image: andiwand/oscam
+    container_name: oscam
+    restart: always
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./:/config
+

@@ -17,15 +17,14 @@ RUN apt-get install -y \
 
 RUN svn checkout "${SVN}" "${SOURCE_PATH}"
 RUN cd "${SOURCE_PATH}" \
-    && svn update \
     && svn update -r "${REVISION}" \
     && ./config.sh \
         --enable ${CONFIG_ENABLE} \
         --disable ${CONFIG_DISABLE} \
     && CPU_CORES="$( grep -c processor /proc/cpuinfo )" || CPU_CORES="1" \
     && make -j "${CPU_CORES}" \
-        CONF_DIR="${CONFIG_PATH}"   \
-        OSCAM_BIN=${BINARY_PATH}
+        CONF_DIR="${CONFIG_PATH}" \
+        OSCAM_BIN="${BINARY_PATH}"
 RUN rm -rf "${SOURCE_PATH}"
 
 RUN apt-get remove -y \
@@ -36,6 +35,9 @@ RUN apt-get remove -y \
     && rm -rf "/var/lib/apt/lists/*"
 
 VOLUME "${CONFIG_PATH}"
+
+ENV CONFIG_PATH="${CONFIG_PATH}" \
+    BINARY_PATH="${BINARY_PATH}"
 
 CMD "${BINARY_PATH}" -c "${CONFIG_PATH}"
 
